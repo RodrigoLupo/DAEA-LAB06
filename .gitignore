@@ -1,0 +1,77 @@
+﻿## Ignore the files related to .NET Core and .NET Framework ##
+# User-specific files
+.idea/
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer (for Visual Studio)
+.vs2019/
+.vs2017/
+
+# User-specific files (Windows/Mac/Linux)
+.DS_Store
+Thumbs.db
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]eploy/
+[Dd]ebugBuild/
+[Dd]ebug-netcoreapp*/ 
+[Dd]ebug-*/ 
+[Dd]eploy-*/ 
+[Dd]ebug-windows-x64/
+
+# .NET Core Build directories
+bin/
+obj/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# User secrets
+secrets/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# .NET Core SDKs
+.sdk/
+
+# VS for Mac
+.vscode/
+
+# JetBrains Rider
+.idea/
+
+# Resharper
+.idea/
+
+# ASP.NET temp files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Log files
+*.log
+
+# Azure Functions
+local.settings.json
+
+# Coverage Results
+coverage/
