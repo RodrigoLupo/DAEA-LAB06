@@ -1,4 +1,7 @@
 using System.Text;
+using LAB06_RodrigoLupo.Models;
+using LAB06_RodrigoLupo.Repository.Unit;
+using LAB06_RodrigoLupo.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -31,10 +34,12 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Administrator", policy => policy.RequireRole("Admin"));
 });
-//builder.Services.AddDbContext<BlogDbContext>(options =>
-//    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
-//        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")))
-//);
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<JwtService>();
+builder.Services.AddDbContext<JwtDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")))
+);
 
 var app = builder.Build();
 

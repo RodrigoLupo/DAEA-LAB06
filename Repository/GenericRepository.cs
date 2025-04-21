@@ -62,7 +62,28 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
         return await query.ToListAsync();
     }
+    public async Task<IEnumerable<T>> GetByStringProperty(
+        string propertyName,
+        string value,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+    {
+        var parameter = Expression.Parameter(typeof(T), "x");
+        var property = Expression.PropertyOrField(parameter, propertyName);
 
+        if (property.Type != typeof(string))
+            throw new ArgumentException($"La propiedad '{propertyName}' no es de tipo string.");
+
+        var valueExpression = Expression.Constant(value, typeof(string));
+        var equalExpression = Expression.Equal(property, valueExpression);
+        var lambda = Expression.Lambda<Func<T, bool>>(equalExpression, parameter);
+
+        IQueryable<T> query = _context.Set<T>().Where(lambda);
+
+        if (include != null)
+            query = include(query);
+
+        return await query.ToListAsync();
+    }
     
     public async Task Add(T entity)
     {

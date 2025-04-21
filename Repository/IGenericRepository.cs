@@ -5,6 +5,10 @@ namespace LAB06_RodrigoLupo.Repository;
 
 public interface IGenericRepository<T> where T : class
 {
+    Task<IEnumerable<T>> GetByStringProperty(
+        string propertyName,
+        string value,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
     Task<IEnumerable<T>> GetAll(
         Expression<Func<T, bool>>? filter = null,
         Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
